@@ -5,11 +5,17 @@ This policy computes required joint angles (q 0 and q 1) to achieve desired loca
 
 ## Major Equations
 Using the Law of Cosines, the elbow angle $q_1$ is found:
-$$ \cos(q_1) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2} $$
-$$ q_1 = \text{atan2}\left(\sqrt{1 - \cos^2(q_1)}, \cos(q_1)\right) $$
+```math
+\cos(q_1) = \frac{x^2 + y^2 - L_1^2 - L_2^2}{2 L_1 L_2}
+```
+```math
+q_1 = \text{atan2}\left(\sqrt{1 - \cos^2(q_1)}, \cos(q_1)\right)
+```
 
 The base angle $q_0$ is then computed:
-$$ q_0 = \text{atan2}(y, x) - \text{atan2}(L_2 \sin(q_1), L_1 + L_2 \cos(q_1)) $$
+```math
+q_0 = \text{atan2}(y, x) - \text{atan2}(L_2 \sin(q_1), L_1 + L_2 \cos(q_1))
+```
 
 ## Inputs and Expected Output
 - **Inputs**: Target position $(x, y)$, link lengths (`L1`, `L2`), and joint limits.

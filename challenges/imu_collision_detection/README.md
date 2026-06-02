@@ -5,14 +5,22 @@ This solution uses IMU sensors to detect collisions. This is done by calculating
 
 ## Major Equations
 Jerk is calculated as the rate of change of magnitude:
-$$ j_{accel} = \frac{|\vec{a}_t| - |\vec{a}_{t-1}|}{\Delta t} $$
+```math
+j_{accel} = \frac{|\vec{a}_t| - |\vec{a}_{t-1}|}{\Delta t}
+```
 
 The variance is updated using an exponential moving average:
-$$ \sigma_{accel}^2 = 0.98 \cdot \sigma_{accel}^2 + 0.02 \cdot j_{accel}^2 $$
+```math
+\sigma_{accel}^2 = 0.98 \cdot \sigma_{accel}^2 + 0.02 \cdot j_{accel}^2
+```
 
 Collision is triggered based on normalized scores:
-$$ z_{accel} = \frac{j_{accel}}{\max(0.5, \sigma_{accel})}, \quad z_{gyro} = \frac{j_{gyro}}{\max(0.3, \sigma_{gyro})} $$
-$$ \text{Collision if } z_{accel} \cdot z_{gyro} > 12.0 $$
+```math
+z_{accel} = \frac{j_{accel}}{\max(0.5, \sigma_{accel})}, \quad z_{gyro} = \frac{j_{gyro}}{\max(0.3, \sigma_{gyro})}
+```
+```math
+\text{Collision if } z_{accel} \cdot z_{gyro} > 12.0
+```
 
 ## Inputs and Expected Output
 - **Inputs**: IMU state containing 3-axis acceleration (`ax, ay, az`), 3-axis angular velocity (`gx, gy, gz`), and timestamp (`t`).

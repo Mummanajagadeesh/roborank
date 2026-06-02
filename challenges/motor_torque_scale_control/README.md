@@ -5,12 +5,20 @@ This policy is used to scale and govern the torque applied to the motor to achie
 
 ## Major Equations
 The commanded current is a combination of Feedforward (FF) and Feedback (FB):
-$$ FF = \frac{F_{target} \cdot L_{shaft}}{K_t} $$
-$$ FB = K_P \cdot e + K_I \int e \, dt + K_D \frac{de}{dt} $$
-$$ I_{cmd} = \max(-I_{max}, \min(I_{max}, FF + FB)) $$
+```math
+FF = \frac{F_{target} \cdot L_{shaft}}{K_t}
+```
+```math
+FB = K_P \cdot e + K_I \int e \, dt + K_D \frac{de}{dt}
+```
+```math
+I_{cmd} = \max(-I_{max}, \min(I_{max}, FF + FB))
+```
 
 Where the error $e$ is:
-$$ e = F_{target} - F_{scale} $$
+```math
+e = F_{target} - F_{scale}
+```
 
 ## Inputs and Expected Output
 - **Inputs**: Target force, current measured scale force, shaft length, torque constant ($K_t$), maximum current limit, and loop time step (`dt`).

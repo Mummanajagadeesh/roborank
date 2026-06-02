@@ -5,13 +5,19 @@ In this policy, the pose (position and orientation) of a differential drive robo
 
 ## Major Equations
 The distances traveled by the left and right wheels ($\Delta d_L$, $\Delta d_R$) are derived from encoder changes $\Delta N$:
-$$ \Delta d = \Delta N \cdot \frac{2 \pi r}{N_{rev}} $$
+```math
+\Delta d = \Delta N \cdot \frac{2 \pi r}{N_{rev}}
+```
 
 The center displacement $\Delta s$ and heading change $\Delta \theta$ are:
-$$ \Delta s = \frac{\Delta d_L + \Delta d_R}{2}, \quad \Delta \theta \approx \omega_{gyro} \cdot \Delta t $$
+```math
+\Delta s = \frac{\Delta d_L + \Delta d_R}{2}, \quad \Delta \theta \approx \omega_{gyro} \cdot \Delta t
+```
 
 The global position is updated iteratively:
-$$ x_{k+1} = x_k + \Delta s \cos(\theta_{k+1}), \quad y_{k+1} = y_k + \Delta s \sin(\theta_{k+1}) $$
+```math
+x_{k+1} = x_k + \Delta s \cos(\theta_{k+1}), \quad y_{k+1} = y_k + \Delta s \sin(\theta_{k+1})
+```
 
 ## Inputs and Expected Output
 - **Inputs**: Encoder values (`L`, `R`), wheel radius, ticks per revolution, gyroscope reading (`gyro()`), time step (`dt`).
